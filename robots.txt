@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap:https://4.yoni980807.repl.co/map.txt
