@@ -1,5 +1,4 @@
 import random, sys, time
-from replit import db
 from flask import Flask, Response, send_from_directory, render_template, request, redirect, make_response
 import random
 mt = False
@@ -11,7 +10,7 @@ winstr = 'Mozilla/5.0 (Windows NT'
 app = Flask(  # Create a flask app
     __name__,
     template_folder='templates',  # Name of html file folder
-    static_folder='static'  # Name of directory for static files
+    static_folder='static'  # Name of  for static files
 )
 
 @app.route('/robots.txt')
