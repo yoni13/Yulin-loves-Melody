@@ -1,7 +1,6 @@
 import random, sys, time
 from replit import db
 from flask import Flask, Response, send_from_directory, render_template, request, redirect, make_response
-from werkzeug.useragents import UserAgent
 import random
 mt = False
 android = 'Mozilla/5.0 (Linux; Android'
@@ -32,6 +31,9 @@ def me():
 def four():
   return render_template('4.html')
 
+@app.route('/7')
+def xuan():
+  return render_template('7.html')
 
 @app.route("/set")
 def setcookie():
