@@ -1,6 +1,7 @@
 import random, sys, time
 from flask import Flask, Response, send_from_directory, render_template, request, redirect, make_response
 import random
+from jinja2 import utils
 mt = False
 android = 'Mozilla/5.0 (Linux; Android'
 iphonestr = 'Mozilla/5.0 (iPhone'
@@ -30,9 +31,11 @@ def me():
 def four():
   return render_template('4.html')
 
-@app.route('/7')
-def xuan():
-  return render_template('7.html')
+@app.route('/api')
+def api():
+  blue = utils.escape(request.args.get('user1'))
+  red = utils.escape(request.args.get('user2'))
+  return render_template('7.html',blue=blue,red=red)
 
 @app.route("/set")
 def setcookie():
