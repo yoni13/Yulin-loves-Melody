@@ -1,7 +1,7 @@
 import random, sys, time
 from flask import Flask, Response, send_from_directory, render_template, request, redirect, make_response
 import random
-from jinja2 import utils
+from markupsafe import escape
 mt = False
 android = 'Mozilla/5.0 (Linux; Android'
 iphonestr = 'Mozilla/5.0 (iPhone'
@@ -14,13 +14,7 @@ app = Flask(  # Create a flask app
     static_folder='static'  # Name of  for static files
 )
 
-@app.route('/robots.txt')
-def robots():
-  return send_from_directory('.','robots.txt')
-@app.route('/map.txt')
-def map():
-  print(request.headers.get('user-agent'))
-  return send_from_directory('.','sitemap.txt')
+
 @app.route('/12')
 def twelve():
   return render_template('12.html')
@@ -33,8 +27,8 @@ def four():
 
 @app.route('/api')
 def api():
-  blue = utils.escape(request.args.get('user1'))
-  red = utils.escape(request.args.get('user2'))
+  blue = escape(request.args.get('user1'))
+  red = escape(request.args.get('user2'))
   return render_template('7.html',blue=blue,red=red)
 
 @app.route("/set")
@@ -95,4 +89,3 @@ def favicon():
         "https://media.discordapp.net/attachments/858972718611562496/900698598612803584/A.png"
     )
 
-app.run(host='0.0.0.0', port=8080, debug=True)
