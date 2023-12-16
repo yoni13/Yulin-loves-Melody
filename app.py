@@ -2,12 +2,8 @@ import random, sys, time
 from flask import Flask, Response, send_from_directory, render_template, request, redirect, make_response
 import random
 from markupsafe import escape
-mt = False
-android = 'Mozilla/5.0 (Linux; Android'
-iphonestr = 'Mozilla/5.0 (iPhone'
-linuxstr = 'Mozilla/5.0 (Linux'
-linuxstr2 = 'Mozilla/5.0 (X11'
-winstr = 'Mozilla/5.0 (Windows NT'
+
+
 app = Flask(  # Create a flask app
     __name__,
     template_folder='templates',  # Name of html file folder
@@ -61,26 +57,7 @@ def Server_Error(e):
 
 @app.route('/')
 def index():
-    global all
-
-    if mt == False:
-        return render_template('an.html')
-    else:
-        return render_template('mt.html')
-
-
-@app.route('/1207')
-def photo():
-    if mt == False:
-        if 'ban' in request.cookies:
-            return render_template('403.html'), 403
-        else:
-            return render_template('1207.html')
-    else:
-        return render_template('mt.html')
-
-
-
+    return render_template('an.html')
 
 
 @app.route("/favicon.ico")

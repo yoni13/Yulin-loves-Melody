@@ -7,5 +7,5 @@ RUN \
     fi
 COPY . /opt/app
 RUN pip install -r requirements.txt --no-cache-dir --upgrade
-CMD ["gunicorn", "--bind", "0.0.0.0:1234", "app:app"]
+CMD ["gunicorn", "--bind", "0.0.0.0:1234", "app:app", "--log-level", "debug" ,"--error-logfile" ,"gunicorn_error.log"]
 
