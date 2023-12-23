@@ -1,8 +1,10 @@
-import random, sys, time
 from flask import Flask, Response, send_from_directory, render_template, request, redirect, make_response
-import random
 from markupsafe import escape
-
+from PIL import Image
+from PIL import ImageFont
+from PIL import ImageDraw
+import os
+import base64
 
 app = Flask(  # Create a flask app
     __name__,
@@ -10,50 +12,48 @@ app = Flask(  # Create a flask app
     static_folder='static'  # Name of  for static files
 )
 
+@app.route('/imageapi')
+def imageapi():
+  if not os.path.isdir("tmp"):
+    os.mkdir("tmp")
+  blue = escape(request.args.get('user1'))
+  red = escape(request.args.get('user2'))
 
-@app.route('/12')
-def twelve():
-  return render_template('12.html')
+  blue_utf8 = blue.encode('utf-8')
+  red_utf8 = red.encode('utf-8')
+  namebase64ed = base64.b64encode(blue_utf8 + red_utf8).decode('utf-8')
+
+  if os.path.isfile("tmp/"+namebase64ed+".png"):
+    return send_from_directory("tmp", namebase64ed+".png")
+  
+  img = Image.open("image4api.png")
+  draw = ImageDraw.Draw(img)
+  # font = ImageFont.truetype(<font-file>, <font-size>)
+  font = ImageFont.truetype('NotoSansTC-VariableFont_wght-instance.ttf',50)
+  # draw.text((x, y),"Sample Text",(r,g,b))
+  draw.text((550, 200),blue,(70,207,193),font=font)#blue
+  draw.text((550, 250),"喜歡",(202,201,66),font=font)#yellow
+  draw.text((550, 300),red,(274,78,78),font=font)#red
+
+  current_path = os.getcwd()
+  imgname = namebase64ed+ '.png'
+  img.save(current_path+"/tmp/"+imgname)
+  return send_from_directory(current_path+"/tmp/", imgname)
+
 @app.route('/13')
 def me():
   return render_template('13.html')
 @app.route('/4')
 def four():
-  return render_template('4.html')
+  host = request.host
+  return render_template('4.html',host=host)
 
 @app.route('/api')
 def api():
+  host = request.host
   blue = escape(request.args.get('user1'))
   red = escape(request.args.get('user2'))
-  return render_template('7.html',blue=blue,red=red)
-
-@app.route("/set")
-def setcookie():
-    resp = redirect('/403')
-    resp.set_cookie(key='ban', value='just ban', expires=time.time() + 172800)
-    f = open("403.txt", "a")
-    f.write(request.headers.get('user-agent'))
-    f.write("\n")
-    f.close
-    return resp
-
-
-@app.route('/403')
-def denied():
-    return render_template('403.html'), 403
-
-
-@app.errorhandler(404)
-def page_not_found(e):
-    # note that we set the 404 status explicitly
-    return render_template('404.html'), 404
-
-
-@app.errorhandler(500)
-def Server_Error(e):
-    # note that we set the 500 status explicitly
-    return render_template('500.html'), 500
-
+  return render_template('custom.html',blue=blue,red=red,host=host)
 
 @app.route('/')
 def index():

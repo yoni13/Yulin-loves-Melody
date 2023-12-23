@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<meta content='width=device-width, initial-scale=1' name='viewport'/>
+<html id='full'>
+<head>
+  <title>{{ blue }}喜歡{{ red }}</title>
+	<link href="/static/snow.css" rel="stylesheet" type="text/css">
+  <link href="/static/4.css" rel="stylesheet" type="text/css"></head>
+  <meta property="og:title" content="{{ blue }}喜歡{{ red }}" />
+<meta property="og:description" content="聽說{{ blue }}喜歡{{ red }}" />
+<meta property="og:image" content="{{ host }}/imageapi?user1={{ blue }}&user2={{ red }}" />
+</head>
+
+<body  onkeypress="full()">
+  
+  <div class="wrapper">
+  <div class="snow"></div>
+  <div class="snow"></div>
+  <div class="snow"></div>
+  <div class="snow"></div>
+  <div class="snow"></div>
+  <div class="snow"></div>
+  <div class="snow"></div>
+  <div class="snow"></div>
+  <div class="snow"></div>
+  <div class="snow"></div>
+</div>
+</body>
+    
+
+<script>
+   
+  showalert()
+function full() {
+   var elem = document.getElementById("full");
+  if (elem.requestFullscreen) {
+  elem.requestFullscreen();
+} else if (elem.msRequestFullscreen) {
+  elem.msRequestFullscreen();
+} else if (elem.mozRequestFullScreen) {
+  elem.mozRequestFullScreen();
+} else if (elem.webkitRequestFullscreen) {
+  elem.webkitRequestFullscreen();
+}
+  
+}
+
+ window.onbeforeunload = function () {
+    return "Do you really want to close?";
+    
+ };
+</script>
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QM9997YJBV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QM9997YJBV');
+    </script>
+	<link href="/static/tt2.css" rel="stylesheet" type="text/css">
+<div class="centered">
+  <h1 class="neon-effect">{{blue}}</h1>
+  <h1 class="neon-effect">喜歡</h1>
+  <h1 class="neon-effect">{{red}}</h1>
+</div>
+</html>

@@ -6,6 +6,16 @@ RUN \
     printf "[global]\nextra-index-url=https://www.piwheels.org/simple\n" > /etc/pip.conf ; \
     fi
 COPY . /opt/app
+
+RUN chmod 0644 rmtmp.sh
+
+RUN apt-get update
+RUN apt-get -y install cron
+
+# Add the cron job
+RUN crontab -l | { cat; echo "0 * * * * bash /opt/app/rmtmp.sh"; } | crontab -
+
+
 RUN pip install -r requirements.txt --no-cache-dir --upgrade
 CMD ["gunicorn", "--bind", "0.0.0.0:1234", "app:app", "--log-level", "debug" ,"--error-logfile" ,"gunicorn_error.log"]
 
