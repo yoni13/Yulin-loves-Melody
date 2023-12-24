@@ -12,6 +12,21 @@ app = Flask(  # Create a flask app
     static_folder='static'  # Name of  for static files
 )
 
+
+@app.route('/ombedapi')
+def ombedapi():
+  blue = escape(request.args.get('user1'))
+  red = escape(request.args.get('user2'))
+  json_template = {"author_name": blue + "喜歡" + red,
+    "author_url": "https://yulin.nicewhite.xyz",
+    "provider_name": '聽說' + blue +'喜歡' +  red ,
+    "provider_url": "https://yulin.nicewhite.xyz/api?user1="+blue+"&user2="+red,
+    "type": "photo"
+    }
+  return json_template
+
+
+
 @app.route('/imageapi')
 def imageapi():
   if not os.path.isdir("tmp"):
