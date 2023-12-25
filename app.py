@@ -17,9 +17,9 @@ def oembedapi():
   blue = escape(request.args.get('user1'))
   red = escape(request.args.get('user2'))
   json_template = {"author_name": blue + "喜歡" + red,
-    "author_url": "https://yulin.nicewhite.xyz",
+    "author_url": "https://"+request.host,
     "provider_name": '聽說' + blue +'喜歡' +  red ,
-    "provider_url": "https://yulin.nicewhite.xyz/api?user1="+blue+"&user2="+red,
+    "provider_url": "https://"+request.host+"/api?user1="+blue+"&user2="+red,
     "type": "photo"
     }
   return json_template
