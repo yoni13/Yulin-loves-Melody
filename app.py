@@ -37,7 +37,7 @@ def oembedapi():
 
 
 @app.route('/imageapi')
-@limiter.limit("5/second", override_defaults=False)
+@limiter.limit("2/second", override_defaults=False)
 def imageapi():
   if not os.path.isdir("tmp"):
     os.mkdir("tmp")
