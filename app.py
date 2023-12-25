@@ -5,12 +5,21 @@ from PIL import ImageFont
 from PIL import ImageDraw
 import os
 import base64
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
 
 app = Flask(  # Create a flask app
     __name__,
     template_folder='templates',  # Name of html file folder
     static_folder='static'  # Name of  for static files
 )
+limiter = Limiter(
+    get_remote_address,
+    app=app,
+    default_limits=[],
+    storage_uri="memory://",
+)
+
 
 
 @app.route('/ombedapi')
@@ -28,6 +37,7 @@ def ombedapi():
 
 
 @app.route('/imageapi')
+@limiter.limit("20/second", override_defaults=False)
 def imageapi():
   if not os.path.isdir("tmp"):
     os.mkdir("tmp")

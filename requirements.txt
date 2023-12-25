@@ -1,4 +1,4 @@
 Pillow
 flask 
 gunicorn
-
+Flask-Limiter
