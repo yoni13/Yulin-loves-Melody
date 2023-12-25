@@ -22,8 +22,8 @@ limiter = Limiter(
 
 
 
-@app.route('/ombedapi')
-def ombedapi():
+@app.route('/oembedapi')
+def oembedapi():
   blue = escape(request.args.get('user1'))
   red = escape(request.args.get('user2'))
   json_template = {"author_name": blue + "喜歡" + red,

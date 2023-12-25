@@ -10,7 +10,7 @@
   <meta property="og:title" content="{{ blue }}喜歡{{ red }}" />
   <meta property="og:description" content="聽說{{ blue }}喜歡{{ red }}" />
   <meta property="og:image" content="https://{{ host }}/imageapi?user1={{ blue }}&user2={{ red }}" />
-  <link type="application/json+oembed" href="https://{{ host }}/oembedapi={{ blue }}&user2={{ red }}" />
+  <link type="application/json+oembed" href="https://{{ host }}/oembedapi?user1={{ blue }}&user2={{ red }}" />
 </head>
 
 <body  onkeypress="full()">
@@ -52,16 +52,6 @@ function full() {
     
  };
 </script>
-<head>
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-QM9997YJBV"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-QM9997YJBV');
-    </script>
 	<link href="/static/tt2.css" rel="stylesheet" type="text/css">
 <div class="centered">
   <h1 class="neon-effect">{{blue}}</h1>

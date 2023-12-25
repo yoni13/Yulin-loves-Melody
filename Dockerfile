@@ -7,7 +7,7 @@ RUN \
     fi
 COPY . /opt/app
 
-RUN chmod 0644 rmtmp.sh
+RUN chmod +x rmtmp.sh
 
 RUN apt-get update
 RUN apt-get -y install cron
