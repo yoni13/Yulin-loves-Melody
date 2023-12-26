@@ -35,10 +35,10 @@ def imageapi():
 
   blue_utf8 = blue.encode('utf-8')
   red_utf8 = red.encode('utf-8')
-  namebase64ed = base64.b64encode(blue_utf8 + red_utf8).decode('utf-8')
+  namebase32ed = base64.b32encode(blue_utf8 + red_utf8).decode('utf-8')
 
-  if os.path.isfile("tmp/"+namebase64ed+".png"):
-    return send_from_directory("tmp", namebase64ed+".png")
+  if os.path.isfile("tmp/"+namebase32ed+".png"):
+    return send_from_directory("tmp", namebase32ed+".png")
   
   img = Image.open("image4api.png")
   draw = ImageDraw.Draw(img)
@@ -50,7 +50,7 @@ def imageapi():
   draw.text((550, 300),red,(274,78,78),font=font)#red
 
   current_path = os.getcwd()
-  imgname = namebase64ed+ '.png'
+  imgname = namebase32ed+ '.png'
   img.save(current_path+"/tmp/"+imgname)
   return send_from_directory(current_path+"/tmp/", imgname)
 
