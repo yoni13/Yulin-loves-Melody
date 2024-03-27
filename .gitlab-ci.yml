@@ -3,6 +3,8 @@ stages:
 
 build:
   stage: build
+  variables:
+    IMAGE_TAG: $CI_REGISTRY_IMAGE:latest
   script:
     - apt-get update
     - apt-get install curl python3-pip git sudo -y --no-install-recommends
@@ -11,5 +13,5 @@ build:
     - curl -fsSL get.docker.com -o get-docker.sh && sh get-docker.sh
     - dockerd-rootless-setuptool.sh install
     - docker login $CI_REGISTRY -u $CI_REGISTRY_USER --password-stdin <<<$CI_REGISTRY_PASSWORD
-    - docker build gitlab.nicewhite.xyz/yoni13/yulinlovemelody/image . --no-cache
-    - docker push gitlab.nicewhite.xyz/yoni13/yulinlovemelody/image
+    - docker build $IMAGE_TAG . --no-cache
+    - docker push $IMAGE_TAG
