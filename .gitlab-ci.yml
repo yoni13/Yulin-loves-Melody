@@ -9,6 +9,7 @@ build:
     - sudo apt-get update
     - sudo apt-get install ca-certificates curl
     - curl -fsSL get.docker.com -o get-docker.sh && sh get-docker.sh
+    - dockerd-rootless-setuptool.sh install
     - docker login $CI_REGISTRY -u $CI_REGISTRY_USER --password-stdin <<<$CI_REGISTRY_PASSWORD
     - docker build gitlab.nicewhite.xyz/yoni13/yulinlovemelody/image . --no-cache
     - docker push gitlab.nicewhite.xyz/yoni13/yulinlovemelody/image
