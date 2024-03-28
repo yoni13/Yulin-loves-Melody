@@ -4,11 +4,6 @@ stages:
 build:
   stage: build
   script:
-    - apt-get update
-    - apt-get install curl python3-pip git sudo -y --no-install-recommends
-    - sudo apt-get update
-    - sudo apt-get install ca-certificates curl
-    - curl -fsSL get.docker.com -o get-docker.sh && sh get-docker.sh
     - docker login $CI_REGISTRY -u $CI_REGISTRY_USER --password-stdin <<<$CI_REGISTRY_PASSWORD
     - docker build -t gitlab.nicewhite.xyz:8443/yoni13/yulin-loves-melody .
     - docker push -t gitlab.nicewhite.xyz:8443/yoni13/yulin-loves-melody .
