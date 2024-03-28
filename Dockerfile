@@ -8,7 +8,7 @@ RUN \
 COPY . /opt/app
 
 RUN chmod +x rmtmp.sh
-
+RUN mkdir -p /etc/cron.d/hello-cron/
 RUN touch /etc/cron.d/hello-cron/crontab
 
 # Give execution rights on the cron job
