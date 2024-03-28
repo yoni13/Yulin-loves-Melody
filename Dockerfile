@@ -9,6 +9,12 @@ COPY . /opt/app
 
 RUN chmod +x rmtmp.sh
 
+ADD crontab /etc/cron.d/hello-cron
+
+# Give execution rights on the cron job
+RUN chmod 0644 /etc/cron.d/hello-cron
+
+
 RUN apt-get update
 RUN apt-get -y install cron
 
