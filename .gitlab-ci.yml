@@ -8,9 +8,7 @@ stages:
 build:
   stage: build
   script:
-    - echo $PUSH_PASSWD
-    - echo 'passwd'
     - apk add --no-cache bash git 
-    - bash -c "docker login reg-gitlab.nicewhite.xyz -u yoni13 --password-stdin <<<$PUSH_PASSWD"
+    - bash -c "$DOCKER_PUSH | docker login reg-gitlab.nicewhite.xyz -u yoni13 --password-stdin"
     - docker build -t reg-gitlab.nicewhite.xyz:8443/yoni13/yulin-loves-melody . 
     - docker push reg-gitlab.nicewhite.xyz:8443/yoni13/yulin-loves-melody
