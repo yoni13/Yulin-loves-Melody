@@ -11,4 +11,4 @@ build:
     - apk add --no-cache bash git 
     - bash -c "docker login $CI_REGISTRY -u $CI_REGISTRY_USER --password-stdin <<<$CI_REGISTRY_PASSWORD"
     - docker build -t gitlab.nicewhite.xyz:8443/yoni13/yulin-loves-melody .
-    - docker push
+    - docker push gitlab.nicewhite.xyz:8443/yoni13/yulin-loves-melody
