@@ -3,6 +3,7 @@ from markupsafe import escape
 from PIL import Image
 from PIL import ImageFont
 from PIL import ImageDraw
+import urllib.parse
 import os
 import base64
 app = Flask(  # Create a flask app
@@ -66,8 +67,10 @@ def four():
 def api():
   host = request.host
   blue = escape(request.args.get('user1'))
+  url_blue = urllib.parse.quote(blue)
   red = escape(request.args.get('user2'))
-  return render_template('custom.html',blue=blue,red=red,host=host)
+  url_red = urllib.parse.quote(red)
+  return render_template('custom.html',blue=blue,red=red,host=host,url_blue=url_blue,url_red=url_red)
 
 @app.route('/')
 def index():
