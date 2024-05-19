@@ -1,15 +1,12 @@
 from flask import Flask, Response, send_from_directory, render_template, request, redirect, make_response
 from markupsafe import escape
-from PIL import Image
-from PIL import ImageFont
-from PIL import ImageDraw
+from PIL import Image, ImageDraw, ImageFont
+
 import urllib.parse
 import os
 import base64
 app = Flask(  # Create a flask app
-    __name__,
-    template_folder='templates',  # Name of html file folder
-    static_folder='static'  # Name of  for static files
+    __name__
 )
 
 
