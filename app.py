@@ -5,9 +5,7 @@ from PIL import Image, ImageDraw, ImageFont
 import urllib.parse
 import os
 import base64
-app = Flask(  # Create a flask app
-    __name__
-)
+app = Flask(__name__)
 
 
 @app.route('/oembedapi')
